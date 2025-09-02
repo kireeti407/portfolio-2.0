@@ -76,23 +76,35 @@ const Projects = () => {
     }
   ];
 
+  // Enhanced container and item variants for professional animation
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
+      y: 0,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        type: "spring",
+        stiffness: 60,
+        damping: 18,
+        staggerChildren: 0.16,
+        delayChildren: 0.15,
+      },
+    },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { 
-      opacity: 1, 
+    hidden: { opacity: 0, y: 40, scale: 0.98 },
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 80,
+        damping: 16,
+        mass: 0.7,
+      },
+    },
   };
 
   return (
@@ -121,7 +133,12 @@ const Projects = () => {
               <motion.div
                 key={project.id}
                 variants={itemVariants}
-                whileHover={{ y: -10, scale: 1.02 }}
+                whileHover={{
+                  y: -14,
+                  scale: 1.045,
+                  boxShadow: "0 12px 32px rgba(59,130,246,0.10)",
+                }}
+                transition={{ type: "spring", stiffness: 220, damping: 18 }}
                 className={`bg-gradient-to-br ${project.bgColor} rounded-2xl p-8 cursor-pointer group relative overflow-hidden`}
                 onClick={() => setSelectedProject(project)}
               >
@@ -133,9 +150,13 @@ const Projects = () => {
                 </div>
 
                 <div className="relative z-10">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${project.color} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                  <motion.div
+                    className={`w-16 h-16 bg-gradient-to-r ${project.color} rounded-xl flex items-center justify-center mb-6`}
+                    whileHover={{ scale: 1.13, rotate: 8 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 16 }}
+                  >
                     <project.icon className="w-8 h-8 text-white" />
-                  </div>
+                  </motion.div>
 
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                     {project.title}
@@ -158,10 +179,14 @@ const Projects = () => {
                     ))}
                   </div>
 
-                  <div className="flex items-center text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+                  <motion.div
+                    className="flex items-center text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white transition-colors"
+                    whileHover={{ x: 4 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 14 }}
+                  >
                     <span className="font-medium">View Case Study</span>
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </div>
+                  </motion.div>
                 </div>
               </motion.div>
             ))}
@@ -174,14 +199,16 @@ const Projects = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+                transition={{ duration: 0.25, ease: "easeInOut" }}
+                className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
                 onClick={() => setSelectedProject(null)}
               >
                 <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
+                  initial={{ scale: 0.85, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.8, opacity: 0 }}
-                  className="bg-white dark:bg-gray-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+                  exit={{ scale: 0.85, opacity: 0 }}
+                  transition={{ type: "spring", stiffness: 180, damping: 18 }}
+                  className="bg-white dark:bg-gray-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <div className="p-8">

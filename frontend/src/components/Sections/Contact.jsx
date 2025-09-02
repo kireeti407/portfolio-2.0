@@ -110,22 +110,34 @@ const Contact = () => {
     },
   ];
 
+  // Enhanced container and item variants for professional animation
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
+      y: 0,
       transition: {
-        staggerChildren: 0.2,
+        type: "spring",
+        stiffness: 60,
+        damping: 18,
+        staggerChildren: 0.16,
+        delayChildren: 0.15,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 40, scale: 0.98 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 80,
+        damping: 16,
+        mass: 0.7,
+      },
     },
   };
 
@@ -223,8 +235,9 @@ const Contact = () => {
                 </div>
 
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: 1.045, boxShadow: "0 8px 32px rgba(59,130,246,0.10)" }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 180, damping: 16 }}
                   type="submit"
                   className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
                 >
@@ -247,7 +260,8 @@ const Contact = () => {
                     <motion.a
                       key={info.label}
                       href={info.href}
-                      whileHover={{ scale: 1.02 }}
+                      whileHover={{ scale: 1.045, x: 4, boxShadow: "0 8px 32px rgba(59,130,246,0.06)" }}
+                      transition={{ type: "spring", stiffness: 180, damping: 16 }}
                       className="flex items-center space-x-4 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors group"
                     >
                       <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center group-hover:bg-blue-200 dark:group-hover:bg-blue-900/50 transition-colors">
@@ -277,8 +291,9 @@ const Contact = () => {
                     <motion.a
                       key={social.label}
                       href={social.href}
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      whileTap={{ scale: 0.9 }}
+                      whileHover={{ scale: 1.13, y: -4, boxShadow: "0 8px 32px rgba(59,130,246,0.10)" }}
+                      whileTap={{ scale: 0.93 }}
+                      transition={{ type: "spring", stiffness: 200, damping: 16 }}
                       className={`w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 ${social.color} transition-colors`}
                     >
                       <social.icon size={20} />

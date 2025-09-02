@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Code2, Lightbulb, Users, Rocket } from 'lucide-react';
+import GitHubStatus from '../GitHubStatus';
 
 const About = () => {
   const [ref, inView] = useInView({
@@ -9,23 +10,35 @@ const About = () => {
     threshold: 0.2
   });
 
+  // Enhanced container and item variants for professional animation
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
+      y: 0,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        type: "spring",
+        stiffness: 60,
+        damping: 18,
+        staggerChildren: 0.16,
+        delayChildren: 0.15,
+      },
+    },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { 
-      opacity: 1, 
+    hidden: { opacity: 0, y: 40, scale: 0.98 },
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 80,
+        damping: 16,
+        mass: 0.7,
+      },
+    },
   };
 
   const principles = [
@@ -62,10 +75,10 @@ const About = () => {
           className="max-w-6xl mx-auto"
         >
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
               About Me
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            <p className="text-base text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
               B.Tech Computer Science & Engineering graduate from Sri Krishnadevaraya University with 
               Full Stack Development certification from Masai School. Passionate about building scalable 
               web applications and solving real-world problems through code.
@@ -73,13 +86,13 @@ const About = () => {
           </motion.div>
 
           {/* Bento Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             {/* Main Story Card */}
             <motion.div
               variants={itemVariants}
-              className="lg:col-span-8 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-8"
+              className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-8"
             >
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
                 My Journey & Experience
               </h3>
               <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
@@ -89,35 +102,37 @@ const About = () => {
                 problem-solving skills, curiosity, and a collaborative spirit to every project.
               </p>
               <div className="flex flex-wrap gap-3">
-                <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-sm font-medium">
+                <span className="px-2 py-0.5 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs font-medium">
                   MERN Stack Developer
                 </span>
-                <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 rounded-full text-sm font-medium">
+                <span className="px-2 py-0.5 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 rounded-full text-xs font-medium">
                   Problem Solver
                 </span>
-                <span className="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full text-sm font-medium">
+                <span className="px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full text-xs font-medium">
                   Fast Learner
                 </span>
               </div>
             </motion.div>
 
+
+
             {/* Stats Card */}
             <motion.div
               variants={itemVariants}
-              className="lg:col-span-4 bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-2xl p-8 flex flex-col justify-center"
+              className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-2xl p-8 flex flex-col justify-center"
             >
               <div className="text-center">
-                <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">250+</div>
-                <div className="text-gray-600 dark:text-gray-400 mb-4">LeetCode Problems</div>
-                <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">5⭐</div>
-                <div className="text-gray-600 dark:text-gray-400">Python HackerRank</div>
+                <div className="text-2xl font-bold text-gray-900 dark:text-white mb-2">250+</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mb-3">LeetCode Problems</div>
+                <div className="text-2xl font-bold text-gray-900 dark:text-white mb-2">5⭐</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">Python HackerRank</div>
               </div>
             </motion.div>
           </div>
 
           {/* Development Principles */}
           <motion.div variants={itemVariants}>
-            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-12 text-center">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-8 text-center">
               Development Principles
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -125,7 +140,8 @@ const About = () => {
                 <motion.div
                   key={principle.title}
                   variants={itemVariants}
-                  whileHover={{ scale: 1.02, y: -5 }}
+                  whileHover={{ scale: 1.045, y: -8, boxShadow: "0 8px 32px rgba(59,130,246,0.10)" }}
+                  transition={{ type: "spring", stiffness: 180, damping: 16 }}
                   className="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-6 hover:shadow-lg transition-all duration-300"
                 >
                   <div className="flex items-start space-x-4">
@@ -135,7 +151,7 @@ const About = () => {
                       </div>
                     </div>
                     <div>
-                      <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                      <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-1">
                         {principle.title}
                       </h4>
                       <p className="text-gray-600 dark:text-gray-400 leading-relaxed">

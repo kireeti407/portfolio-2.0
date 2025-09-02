@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon, Github, Linkedin, Mail } from 'lucide-react';
+import GitHubStatus from '../GitHubStatus';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -15,13 +15,10 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Always enable dark mode
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [darkMode]);
+    document.documentElement.classList.add('dark');
+  }, []);
 
   const navItems = [
     { label: 'About', href: '#about' },
@@ -71,6 +68,17 @@ const Header = () => {
                 {item.label}
               </motion.a>
             ))}
+            {/* GitHub Status Nav Link */}
+            <motion.a
+              href="#github"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: navItems.length * 0.1 }}
+              whileHover={{ scale: 1.1 }}
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+            >
+              GitHub Status
+            </motion.a>
           </div>
 
           {/* Desktop Actions */}
@@ -86,15 +94,6 @@ const Header = () => {
                 <social.icon size={20} />
               </motion.a>
             ))}
-            
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setDarkMode(!darkMode)}
-              className="p-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            >
-              {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </motion.button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -130,7 +129,17 @@ const Header = () => {
                     {item.label}
                   </motion.a>
                 ))}
-                
+                {/* GitHub Status Nav Link in mobile menu */}
+                <motion.a
+                  href="#github"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: navItems.length * 0.1 }}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium py-2"
+                >
+                  GitHub Status
+                </motion.a>
                 <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
                   <div className="flex space-x-4">
                     {socialLinks.map((social) => (
@@ -144,15 +153,6 @@ const Header = () => {
                       </motion.a>
                     ))}
                   </div>
-                  
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => setDarkMode(!darkMode)}
-                    className="p-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                  >
-                    {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-                  </motion.button>
                 </div>
               </div>
             </motion.div>
