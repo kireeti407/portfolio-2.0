@@ -27,6 +27,19 @@ const Header = () => {
     { label: 'Contact', href: '#contact' }
   ];
 
+  // Smooth scroll handler
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+    setTimeout(() => {
+      const id = href.replace('#', '');
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 350); // Wait for menu close animation
+  };
+
   const socialLinks = [
     { icon: Github, href: 'https://github.com/kireeti407', label: 'GitHub' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/kireeti-sangala/', label: 'LinkedIn' },
@@ -64,6 +77,7 @@ const Header = () => {
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ scale: 1.1 }}
                 className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+                onClick={(e) => handleNavClick(e, item.href)}
               >
                 {item.label}
               </motion.a>
@@ -76,6 +90,7 @@ const Header = () => {
               transition={{ delay: navItems.length * 0.1 }}
               whileHover={{ scale: 1.1 }}
               className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+              onClick={(e) => handleNavClick(e, '#github')}
             >
               GitHub Status
             </motion.a>
@@ -123,7 +138,7 @@ const Header = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={(e) => handleNavClick(e, item.href)}
                     className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium py-2"
                   >
                     {item.label}
@@ -135,7 +150,7 @@ const Header = () => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: navItems.length * 0.1 }}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(e) => handleNavClick(e, '#github')}
                   className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium py-2"
                 >
                   GitHub Status

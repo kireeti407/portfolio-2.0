@@ -20,6 +20,7 @@ const Contact = () => {
     subject: "",
     message: "",
   });
+  const [loading, setLoading] = useState(false);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
@@ -34,6 +35,7 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await fetch(VITE_API_URL, {
         method: "POST",
@@ -46,26 +48,22 @@ const Contact = () => {
           message: formData.message,
         }),
       });
-      // Clear the form fields after sending the message
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-
       const data = await response.json();
       if (response.ok) {
-        console.log("Message sent successfully:", data);
-        // Optionally reset form or show success message
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+        // Optionally show success message
       } else {
-        console.error("Error sending message:", data.error);
         // Optionally show error message
       }
     } catch (error) {
-      console.error("Network error:", error);
       // Optionally show network error message
     }
+    setLoading(false);
   };
 
   const contactInfo = [
@@ -93,19 +91,19 @@ const Contact = () => {
     {
       icon: Github,
       label: "GitHub",
-      href: "#",
+      href: "https://github.com/kireeti407",
       color: "hover:text-gray-900 dark:hover:text-white",
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
-      href: "#",
+      href: "https://www.linkedin.com/in/kireeti-sangala/",
       color: "hover:text-blue-600",
     },
     {
       icon: Twitter,
       label: "Twitter",
-      href: "#",
+      href: "https://x.com/Kireeti146",
       color: "hover:text-sky-500",
     },
   ];
@@ -239,10 +237,20 @@ const Contact = () => {
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: "spring", stiffness: 180, damping: 16 }}
                   type="submit"
-                  className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                  className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium relative"
+                  disabled={loading}
                 >
-                  <Send size={20} />
-                  <span>Send Message</span>
+                  {loading ? (
+                    <span className="absolute left-6">
+                      <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                      </svg>
+                    </span>
+                  ) : (
+                    <Send size={20} />
+                  )}
+                  <span>{loading ? 'Sending...' : 'Send Message'}</span>
                 </motion.button>
               </form>
             </motion.div>
@@ -303,7 +311,7 @@ const Contact = () => {
               </div>
 
               {/* Availability */}
-              <div className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-2xl p-8">
+              {/* <div className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-2xl p-8">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                   <span className="font-medium text-gray-900 dark:text-white">
@@ -315,7 +323,7 @@ const Contact = () => {
                   opportunities. Let's discuss how we can bring your vision to
                   life!
                 </p>
-              </div>
+              </div> */}
             </motion.div>
           </div>
         </motion.div>

@@ -8,32 +8,33 @@ const Skills = () => {
     threshold: 0.2
   });
 
+  // Skill logos (replace with your own logo URLs or import SVGs as needed)
   const skillCategories = [
     {
       title: "Languages & Core",
       skills: [
-        { name: "JavaScript", level: 90, color: "bg-yellow-500" },
-        { name: "Python", level: 85, color: "bg-green-500" },
-        { name: "Data Structures & Algorithms", level: 80, color: "bg-purple-500" },
-        { name: "HTML/CSS", level: 90, color: "bg-orange-500" }
+        { name: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+        { name: "Python", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+  { name: "Data Structures & Algorithms", logo: "https://img.icons8.com/ios-filled/50/000000/data-configuration.png" },
+        { name: "HTML/CSS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" }
       ]
     },
     {
       title: "Frontend Development",
       skills: [
-        { name: "React.js", level: 90, color: "bg-blue-500" },
-        { name: "Tailwind CSS", level: 85, color: "bg-teal-500" },
-        { name: "Vite", level: 80, color: "bg-purple-500" },
-        { name: "Responsive Design", level: 90, color: "bg-pink-500" }
+        { name: "React.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+  { name: "Tailwind CSS", logo: "https://img.icons8.com/color/48/000000/tailwindcss.png" },
+        { name: "Vite", logo: "https://vitejs.dev/logo.svg" },
+        { name: "Responsive Design", logo: "https://img.icons8.com/ios-filled/50/monitor--v1.png" }
       ]
     },
     {
       title: "Backend & Database",
       skills: [
-        { name: "Node.js", level: 85, color: "bg-green-600" },
-        { name: "Express.js", level: 80, color: "bg-gray-600" },
-        { name: "MongoDB", level: 85, color: "bg-green-500" },
-        { name: "Firebase", level: 80, color: "bg-orange-600" }
+        { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+        { name: "Express.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
+        { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+        { name: "Firebase", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" }
       ]
     }
   ];
@@ -115,26 +116,18 @@ const Skills = () => {
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-6">
                   {category.title}
                 </h3>
-                <div className="space-y-6">
+                <div className="grid grid-cols-2 gap-6 md:grid-cols-2 lg:grid-cols-1">
                   {category.skills.map((skill, skillIndex) => (
-                    <div key={skill.name}>
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                          {skill.name}
-                        </span>
-                        <span className="text-xs text-gray-500 dark:text-gray-400">
-                          {skill.level}%
-                        </span>
-                      </div>
-                      <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2 overflow-hidden">
-                        <motion.div
-                          variants={skillBarVariants}
-                          initial="hidden"
-                          animate={inView ? "visible" : "hidden"}
-                          custom={skill.level}
-                          className={`h-full ${skill.color} rounded-full`}
-                        />
-                      </div>
+                    <div key={skill.name} className="flex items-center space-x-4">
+                      <img
+                        src={skill.logo}
+                        alt={skill.name + ' logo'}
+                        className="w-10 h-10 object-contain rounded shadow-sm bg-white dark:bg-gray-800 p-1 border border-gray-200 dark:border-gray-700"
+                        loading="lazy"
+                      />
+                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                        {skill.name}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -163,7 +156,7 @@ const Skills = () => {
                 <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-2">Achievements</h4>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li>• 5-Star Python - HackerRank</li>
-                  <li>• 150+ LeetCode Problems Solved</li>
+                  <li>• 250+ LeetCode Problems Solved</li>
                   <li>• Hackathon Participant - Xto10X Edition #4</li>
                 </ul>
               </div>

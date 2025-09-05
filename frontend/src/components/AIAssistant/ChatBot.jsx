@@ -78,7 +78,7 @@ const ChatBot = () => {
 - B.Tech Computer Science & Engineering graduate from Sri Krishnadevaraya University
 - Full Stack Development program at Masai School (hands-on MERN stack)
 - MERN Stack Developer Intern at EXCELR (June-July 2024) — achieved 30% faster API responses through database optimization
-- Strong problem-solving skills: 150+ LeetCode problems solved, 5-Star Python rating on HackerRank
+- Strong problem-solving skills: 250+ LeetCode problems solved, 5-Star Python rating on HackerRank
 - Xto10X Hackathon Edition #4 participant at Masai School
 
 **Contact Information:**

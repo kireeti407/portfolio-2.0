@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ExternalLink, Github, ArrowRight, Heart, Droplets, Brain } from 'lucide-react';
+import markethubImg from '../../assets/markethub.png';
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -73,6 +74,27 @@ const Projects = () => {
       image: "https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg?auto=compress&cs=tinysrgb&w=800",
       url:"https://silly-melba-9a3820.netlify.app/",
       gurl:"https://github.com/kireeti407/memeHUB"
+    },
+    {
+      id: 4,
+      title: "Multi-Vendor Platform",
+      subtitle: "Scalable E-commerce Solution",
+      description: "Architected a scalable multi-vendor platform with secure authentication and role-specific dashboards.",
+      longDescription: "Tech: React, Node.js, Express, MongoDB, JWT. Architected a scalable multi-vendor platform with secure authentication and role-specific dashboards (customer, vendor, admin). Delivered a responsive, intuitive UI/UX, streamlining product browsing, cart management, and checkout flows. Enhanced performance by optimizing RESTful APIs and MongoDB queries, resulting in significantly faster product retrieval and smoother user experience. Implemented vendor product management features (add, edit, delete), empowering vendors to maintain their own inventory.",
+      icon: ExternalLink,
+      color: "from-orange-500 to-yellow-500",
+      bgColor: "from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20",
+      tech: ["React", "Node.js", "Express", "MongoDB", "JWT"],
+      features: [
+        "Secure authentication and role-specific dashboards (customer, vendor, admin)",
+        "Responsive, intuitive UI/UX for product browsing, cart, and checkout",
+        "Optimized RESTful APIs and MongoDB queries for fast product retrieval",
+        "Vendor product management (add, edit, delete)"
+      ],
+      challenges: "Building a scalable platform with secure multi-role access and high-performance data operations.",
+  image: markethubImg,
+      url: "#",
+      gurl: "#"
     }
   ];
 
@@ -240,7 +262,7 @@ const Projects = () => {
                       <img
                         src={selectedProject.image}
                         alt={selectedProject.title}
-                        className="w-full h-64 object-cover rounded-xl"
+                        className="w-full h-80 object-contain rounded-xl bg-white dark:bg-gray-900"
                       />
                     </div>
 
