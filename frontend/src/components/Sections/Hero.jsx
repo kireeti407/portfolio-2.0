@@ -136,22 +136,26 @@ const Hero = () => {
                   View My Work
                 </motion.a>
 
-                <motion.a
-                  href="https://drive.google.com/uc?export=download&id=17k34uoMqXbOkpEdAOiHrLGC6bjO6q2od"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  download
-                  onClick={e => {
-                    // Open in new tab
-                    window.open("https://drive.google.com/file/d/17k34uoMqXbOkpEdAOiHrLGC6bjO6q2od/view", "_blank");
-                  }}
+                <motion.button
+                  type="button"
                   whileHover={{ scale: 1.08, borderColor: "#2563eb", color: "#2563eb" }}
                   whileTap={{ scale: 0.96 }}
                   transition={{ type: "spring", stiffness: 300, damping: 18 }}
                   className="px-8 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:border-blue-600 hover:text-blue-600 dark:hover:border-blue-400 dark:hover:text-blue-400 transition-colors"
+                  onClick={() => {
+                    // Open in new tab
+                    window.open("https://drive.google.com/file/d/1N3iXBUOmizm8RZqNITJFqbzi5TVucCLo/view", "_blank");
+                    // Trigger download
+                    const link = document.createElement('a');
+                    link.href = "https://drive.google.com/uc?export=download&id=1N3iXBUOmizm8RZqNITJFqbzi5TVucCLo";
+                    link.download = "Kireeti_Resume.pdf";
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                  }}
                 >
                   Download Resume
-                </motion.a>
+                </motion.button>
               </motion.div>
             </div>
             {/* Profile Photo */}
