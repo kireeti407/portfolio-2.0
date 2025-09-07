@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ExternalLink, Github, ArrowRight, Heart, Droplets, Brain } from 'lucide-react';
+import artcolabImg from '../../assets/artcolab.png';
+import jobportalImg from '../../assets/jobportal.png';
+import memehubImg from '../../assets/memehub.png';
 import markethubImg from '../../assets/markethub.png';
 
 const Projects = () => {
@@ -29,7 +32,7 @@ const Projects = () => {
         "Project sharing and showcase features"
       ],
       challenges: "Implementing real-time collaboration features while ensuring smooth user experience and data consistency across multiple users.",
-      image: "https://images.pexels.com/photos/1109543/pexels-photo-1109543.jpeg?auto=compress&cs=tinysrgb&w=800",
+  image: artcolabImg,
       url:"https://artcolla.netlify.app/script/dashboard",
       gurl:"https://github.com/kireeti407/ArtCollab_App"
     },
@@ -50,7 +53,7 @@ const Projects = () => {
         "Optimized database queries with indexing"
       ],
       challenges: "Building secure authentication system and optimizing database performance for large-scale job listings and applications.",
-      image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800",
+  image: jobportalImg,
       url:"https://jobprovider.onrender.com/",
       gurl:"https://github.com/kireeti407/jobportal"
     },
@@ -71,7 +74,7 @@ const Projects = () => {
         "Lazy loading for optimal performance"
       ],
       challenges: "Delivering a fully functional real-time platform within 48 hours while ensuring scalability and smooth user experience.",
-      image: "https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg?auto=compress&cs=tinysrgb&w=800",
+  image: memehubImg,
       url:"https://silly-melba-9a3820.netlify.app/",
       gurl:"https://github.com/kireeti407/memeHUB"
     },
